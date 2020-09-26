@@ -1,11 +1,18 @@
 var events = require('events')
+var util = require('util')
 
-var myEmitter = new events.EventEmitter();
+var Person = function(name){
+    this.name = name;
+}
 
-myEmitter.on('thisEvent', (first, second)=> {
-    console.log('this event was being emitted');
-    console.log(second);
-    console.log(`${first} - this was the first argument btw`)
+var personOne = new Person('kudra')
+
+util.inherits(Person, events.EventEmitter)
+
+personOne.on('someEvent', ()=>{
+    console.log('this was fired');
 })
 
-myEmitter.emit('thisEvent', 'how will it take this', 'no chance for this second one')
+personOne.emit('someEvent');
+
+// console.log(personOne)
