@@ -4,15 +4,22 @@ var util = require('util')
 var Person = function(name){
     this.name = name;
 }
-
-var personOne = new Person('kudra')
-
 util.inherits(Person, events.EventEmitter)
 
-personOne.on('someEvent', ()=>{
-    console.log('this was fired');
+var personOne = new Person('kudra')
+var personTwo = new Person('yain')
+var personThree = new Person('tofu')
+
+persons = [personOne, personTwo, personThree]
+
+persons.forEach((person)=>{
+    person.on('speak', (mssg)=>{
+        console.log(mssg)
+    })
 })
 
-personOne.emit('someEvent');
+personOne.emit('speak', `${personOne.name}: How are you?`);
+personTwo.emit('speak', `${personTwo.name}: I am fine`);
+personThree.emit('speak', `${personThree.name}: Arry mujhe tu andar lo`);
 
 // console.log(personOne)
