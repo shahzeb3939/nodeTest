@@ -5,12 +5,7 @@ var fs = require('fs')
 var myReadStream = fs.createReadStream(__dirname+'/readMe.txt', 'utf8');
 var myWriteStream = fs.createWriteStream(__dirname+'/writeMe.txt')
 
-var count = 0;
-myReadStream.on('data', (chunk)=>{
-    myWriteStream.write(chunk);
-    count+=1;
-    console.log(`${count} chunck written`)
-})
+myReadStream.pipe(myWriteStream);
 
 // var server = http.createServer(function(req, res) {
 //     console.log(`Request: ${req.url}`)
