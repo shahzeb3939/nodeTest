@@ -1,28 +1,10 @@
-var fs = require('fs')
+var http = require('http')
 
-// fs.readFile('readMe.txt', 'utf8', function(err,data){
-//     if (err) throw err;
-//     console.log(data);
-//     fs.writeFile('writtenFile.txt', data, (err)=>{
-//         if (err) throw err;
-//         console.log('the file has been written')
-//     })
-// });
+var server = http.createServer(function(req, res) {
+    console.log(`Request: ${req.url}`)
+    res.writeHead(200, {'Content-Type': 'text/plane'})
+    res.end("I now know how is this working")
+})
 
-// fs.unlink('writtenFile.txt', (err)=>{
-//     if (err) throw err;
-//     console.log("file is successfully removed");
-// })
-
-// fs.mkdir('newDirect', (err)=>{
-//     if (err) throw err;
-//     console.log('directory is created');
-// })
-
-// fs.mkdirSync('newOne')
-// fs.rmdirSync('newDirect')
-
-// fs.rmdir('newOne', (err)=>{
-//     if (err) throw err;
-//     console.log("directory removed successfully")
-// })
+server.listen(5000, '127.0.0.1');
+console.log('listning to port 5000 on localhost 127.0.0.1')
